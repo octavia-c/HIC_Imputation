@@ -63,7 +63,14 @@ print("------------------\n")
 
 if(method == "RW"):
     print("------------------\nRW\n------------------\n")
-    subprocess.call(["python", dir_path + "/RW/RW.py", "--input", input_folder, "--output", imputation_output, "--uniform", dir_path + "/RW/uniform_output/"])
+    uniform_output = dir_path + "/RW/uniform_output/"
+    if os.path.exists(uniform_output):
+        try:
+            shutil.rmtree(uniform_output)
+        except OSError as e:
+            print("Error: %s - %s." % (e.filename, e.strerror))
+    os.makedirs(uniform_output)
+    subprocess.call(["python", dir_path + "/RW/RW.py", "--input", input_folder, "--output", imputation_output, "--uniform", uniform_output])
 elif (method == "HiCNN2"):
     print("------------------\nHiCNN2\n------------------\n")
     subprocess.call(["python", dir_path + "/HiCNN2/RW.py", "--input", input_folder, "--output", imputation_output])
