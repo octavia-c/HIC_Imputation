@@ -6,6 +6,7 @@ import shutil
 parser = ap.ArgumentParser()
 parser.add_argument('--input_folder', '-i', required = True)
 parser.add_argument('--method' , '-m',  choices=['RW', 'HiCNN2', 'DeepHiC'], required = True)
+parser.add_argument('--chrLength', '-c', default = 0, type = int)
 parser.add_argument('--output_folder', '-o', required = True)
 group = parser.add_mutually_exclusive_group()
 group.add_argument('--binarization', '-b', action="store_true")
@@ -19,6 +20,10 @@ output_folder = args.output_folder
 binarization = args.binarization
 personalized_binarization = args.personalized_binarization
 personalized_selective_binarization = args.personalized_selective_binarization
+chrLength = args.chrLength
+
+if(method == 'HiCNN2' and chrLength == 0):
+    raise NameError('Chromosome Length -c is required for method HiCNN2')
 
 
 if os.path.exists(output_folder):
@@ -58,30 +63,26 @@ print("------------------\n")
 
 if(method == "RW"):
     print("------------------\nRW\n------------------\n")
+    subprocess.call(["python", dir_path + "/RW/RW.py", "--input", input_folder, "--output", imputation_output, "--uniform", dir_path + "/RW/uniform_output/"])
 elif (method == "HiCNN2"):
     print("------------------\nHiCNN2\n------------------\n")
+    subprocess.call(["python", dir_path + "/HiCNN2/RW.py", "--input", input_folder, "--output", imputation_output])
 elif (method == "DeepHiC"):
     print("------------------\nDeepHiC\n------------------\n")
     subprocess.call(
         ["python", dir_path + "/DeepHiC/scripts/DeepHiC_RUN.py", "--input", input_folder, "--output", imputation_output, "--dataset", dataset, "--deephic", dir_path + "/DeepHiC"])
-    if(binarization):
-        print("------------------\nBinarization\n------------------\n")
-        subprocess.call(
-            ["python", dir_path + "/DeepHiC/scripts/Binarize.py", "--input", imputation_output, "--output", binarization_output])
-        pca_input = binarization_output + "/binary_matrix/"
-    if(personalized_binarization):
-        print("------------------\nPersonalized Binarization\n------------------\n")
-        subprocess.call(
-            ["python", dir_path + "/DeepHiC/scripts/Binarize_personalized.py", "--input", imputation_output, "--output",
-             binarization_output])
-        pca_input = binarization_output + "/binary_matrix_personalized/"
-    if (personalized_selective_binarization):
-        print("------------------\nPersonalized Selective Binarization\n------------------\n")
-        subprocess.call(
-            ["python", dir_path + "/DeepHiC/scripts/Binarize_personalized_selected.py", "--input", imputation_output, "--output",
-             binarization_output])
-        pca_input = binarization_output + "/binary_matrix_personalized/selected"
-
+if(binarization):
+    print("------------------\nBinarization\n------------------\n")
+    subprocess.call(["python", dir_path + "/DeepHiC/scripts/Binarize.py", "--input", imputation_output, "--output", binarization_output])
+    pca_input = binarization_output + "/binary_matrix/"
+if(personalized_binarization):
+    print("------------------\nPersonalized Binarization\n------------------\n")
+    subprocess.call(["python", dir_path + "/DeepHiC/scripts/Binarize_personalized.py", "--input", imputation_output, "--output",binarization_output])
+    pca_input = binarization_output + "/binary_matrix_personalized/"
+if (personalized_selective_binarization):
+    print("------------------\nPersonalized Selective Binarization\n------------------\n")
+    subprocess.call(["python", dir_path + "/DeepHiC/scripts/Binarize_personalized_selected.py", "--input", imputation_output, "--output", binarization_output])
+    pca_input = binarization_output + "/binary_matrix_personalized/selected"
 os.chdir(dir_path)
 print("------------------\nPCA\n------------------\n")
 print("Creating big matrix for PCA")
