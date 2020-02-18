@@ -7,6 +7,7 @@ parser = ap.ArgumentParser()
 parser.add_argument('--input_folder', '-i', required = True)
 parser.add_argument('--method' , '-m',  choices=['RW', 'HiCNN2', 'DeepHiC'], required = True)
 parser.add_argument('--chrLength', '-c', default = 0, type = int)
+parser.add_argument('--numClusters', '-k', required = True)
 parser.add_argument('--output_folder', '-o', required = True)
 group = parser.add_mutually_exclusive_group()
 group.add_argument('--binarization', '-b', action="store_true")
@@ -21,6 +22,7 @@ binarization = args.binarization
 personalized_binarization = args.personalized_binarization
 personalized_selective_binarization = args.personalized_selective_binarization
 chrLength = args.chrLength
+k = args.numClusters
 
 if(method == 'HiCNN2' and chrLength == 0):
     raise NameError('Chromosome Length -c is required for method HiCNN2')
@@ -95,8 +97,7 @@ print("------------------\nPCA\n------------------\n")
 print("Creating big matrix for PCA")
 subprocess.call(["python", dir_path + "/PCA_matrix.py", "--input", pca_input, "--output", tmp_output])
 print("Perfoming PCA")
-subprocess.call(["python", dir_path + "/PCA_server.py", "--input", tmp_output, "--output",output_folder, "-k", str(4)])
-
+subprocess.call(["python", dir_path + "/PCA_server.py", "--input", tmp_output, "--output", output_folder, "-k", k])
 print("------------------\nPIPELINE DONE")
 print("Check results in " + output_folder + "\n------------------")
 

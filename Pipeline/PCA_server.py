@@ -77,7 +77,7 @@ def performPCA(matrix, rownames, output_dir, numClusters):
     ax.grid()
 
 
-    plt.savefig(output_dir + "PCA_HiCNN2_updated.png")
+    plt.savefig(output_dir + "/PCA_HiCNN2_updated.png")
 
 
 
@@ -89,7 +89,7 @@ def make_screeplot(pca , output_dir):
     plt.ylabel('Percentage of Explained Variance')
     plt.xlabel('Principal Component')
     plt.title('Scree Plot')
-    plt.savefig(output_dir + "Scree_plot_updated.png")
+    plt.savefig(output_dir + "/Scree_plot_updated.png")
     plt.clf()
 
 
@@ -112,7 +112,7 @@ def elbowplot_kmeans(pca_data, output_dir, n_samples):
     plt.xlabel('number of clusters, k')
     plt.ylabel('inertia')
 
-    plt.savefig(output_dir + "elbowplot_kmeans.png")
+    plt.savefig(output_dir + "/elbowplot_kmeans.png")
     plt.clf()
 
 
@@ -136,7 +136,7 @@ def perform_kmeans(pca_data, output_dir, numClusters, n_samples):
     plt.title("K-means on the first " + str(min(20, n_samples)) + " PCs")
 
     
-    plt.savefig(output_dir + "PCA_HiCNN2_kmeans_2clusters.png")
+    plt.savefig(output_dir + "/PCA_HiCNN2_kmeans_2clusters.png")
     plt.clf()
 
 
