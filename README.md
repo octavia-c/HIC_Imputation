@@ -13,9 +13,11 @@ HIC Imputation uses Hi-C contact matrices as an input and performs imputation fr
 
 ### Usage:
 
-  $ python Pipeline.py -i <input_path> -o <output_path>
+```
+$ python Pipeline.py -i <input_path> -o <output_path>
   -m (DeepHiC|HiCNN2|RW) -k <n_clusters> [-t] [-p] 
   [-c <chr_len>] [-b] [-q] [-pb] [-psb]
+  ```
   
  
  ``` 
