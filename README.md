@@ -1,19 +1,28 @@
 # HIC_Imputation
 
 
-The tool HIC Imputation was developed by Florian Molnar, Octavia-Andreea Ciora and Kim Le for the De novo Endophenotyping project under the supervision of Olga Lazareva. This project was created as part of the Systems Biomedicine lecture at the Chair of Experimental Bioinformatics.
+The HIC Imputation tool was developed by Florian Molnar, Kim Le and Octavia-Andreea Ciora for the De novo Endophenotyping project under the supervision of Olga Lazareva. This project was created as part of the Systems Biomedicine lecture at the Chair of Experimental Bioinformatics, TUM.
 
 ### Pipeline:
 
-HIC Imputation uses Hi-C contact matrices as an input and performs imputation from low to high resolution data. On the imputed matrices is a Principal Component Analysis (PCA) performed which is the basis for the k-means clustering. 
+HIC Imputation aims to identify and cluster the cell-types of Hi-C data based on the chromatin structure. It takes Hi-C contact matrices (Random Walk, DeepHiC) or read files (HiCNN2) as input. There are three methods available for performing the imputation from low to high resolution data. The user can choose between Random Walk, HiCNN2 and DeepHiC. The binarization is an optional data postprocessing step, where the user can choose between binarization, personalized binarization and selective personalized binarization. The imputed matrices are then used for a Principal Component Analysis (PCA), followed by k-means clustering using the first 20 (or all) principal components. The pipeline outputs a PCA plot, the k-means clustering, a k-means elbow plot and a PCA scree plot.
 
 <img width="922" alt="Pipeline" src="https://user-images.githubusercontent.com/51077615/74770461-9b24ca00-528c-11ea-847e-1f0196db06d9.png">
 
 ### Dependencies:
 
+HiC Imputation pipeline is written in python3. Following depenedcies are necessary for running the tool:
+
 Python 3.6
-numpy >1.14
-pytorch >0.4.0
+pytorch 1.1.0
+torchvision 0.3.0
+numpy 1.16.4
+scipy 1.3.0
+pandas 0.24.2
+scikit-learn 0.21.2
+matplotlib 3.1.0
+tqdm 4.32.2
+visdom 0.1.8.8
 
 ### Usage:
 
