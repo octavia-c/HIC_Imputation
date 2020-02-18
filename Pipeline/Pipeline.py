@@ -6,9 +6,13 @@ import shutil
 parser = ap.ArgumentParser()
 parser.add_argument('--input_folder', '-i', required = True)
 parser.add_argument('--method' , '-m',  choices=['RW', 'HiCNN2', 'DeepHiC'], required = True)
-parser.add_argument('--chrLength', '-c', default = 0, type = int)
-parser.add_argument('--numClusters', '-k', required = True)
+parser.add_argument('--chr_length', '-c', default = 0, type = int)
+parser.add_argument('--num_clusters', '-k', required = True)
 parser.add_argument('--output_folder', '-o', required = True)
+parser.add_argument('--quantile', '-q', default=0.85, type = float)
+parser.add_argument('--threshold', '-t', default=0.1, type = float)
+parser.add_argument('--restart_probability', '-p', default = 0.03, type = float)
+
 group = parser.add_mutually_exclusive_group()
 group.add_argument('--binarization', '-b', action="store_true")
 group.add_argument('--personalized_binarization', '-pb', action="store_true")
@@ -21,8 +25,12 @@ output_folder = args.output_folder
 binarization = args.binarization
 personalized_binarization = args.personalized_binarization
 personalized_selective_binarization = args.personalized_selective_binarization
-chrLength = args.chrLength
-k = args.numClusters
+chrLength = args.chr_length
+k = args.num_clusters
+quantile = args.quantile
+threshold = args.threshold
+restart_probability = args.restart_probability
+
 
 if(method == 'HiCNN2' and chrLength == 0):
     raise NameError('Chromosome Length -c is required for method HiCNN2')
@@ -72,7 +80,7 @@ if(method == "RW"):
         except OSError as e:
             print("Error: %s - %s." % (e.filename, e.strerror))
     os.makedirs(uniform_output)
-    subprocess.call(["python", dir_path + "/RW/RW.py", "--input", input_folder, "--output", imputation_output, "--uniform", uniform_output])
+    subprocess.call(["python", dir_path + "/RW/RW.py", "--input", input_folder, "--output", imputation_output, "--uniform", uniform_output, "-p", restart_probability, "-t", threshold])
 elif (method == "HiCNN2"):
     print("------------------\nHiCNN2\n------------------\n")
     subprocess.call(["python", dir_path + "/HiCNN2/HiCNN2.py", input_folder, str(chrLength)])
@@ -82,11 +90,11 @@ elif (method == "DeepHiC"):
         ["python", dir_path + "/DeepHiC/scripts/DeepHiC_RUN.py", "--input", input_folder, "--output", imputation_output, "--dataset", dataset, "--deephic", dir_path + "/DeepHiC"])
 if(binarization):
     print("------------------\nBinarization\n------------------\n")
-    subprocess.call(["python", dir_path + "/DeepHiC/scripts/Binarize.py", "--input", imputation_output, "--output", binarization_output])
+    subprocess.call(["python", dir_path + "/DeepHiC/scripts/Binarize.py", "--input", imputation_output, "--output", binarization_output, "-q", quantile])
     pca_input = binarization_output + "/binary_matrix/"
 if(personalized_binarization):
     print("------------------\nPersonalized Binarization\n------------------\n")
-    subprocess.call(["python", dir_path + "/DeepHiC/scripts/Binarize_personalized.py", "--input", imputation_output, "--output",binarization_output])
+    subprocess.call(["python", dir_path + "/DeepHiC/scripts/Binarize_personalized.py", "--input", imputation_output, "--output", binarization_output])
     pca_input = binarization_output + "/binary_matrix_personalized/"
 if (personalized_selective_binarization):
     print("------------------\nPersonalized Selective Binarization\n------------------\n")
