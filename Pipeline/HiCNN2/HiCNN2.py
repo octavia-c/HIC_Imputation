@@ -5,9 +5,9 @@ import shutil
 
 dir_path = os.path.dirname(os.path.realpath(__file__)) + "/"
 
-if os.path.exists(dir + "HiCNN2_package/read_files/"):
+if os.path.exists(dir_path + "HiCNN2_package/read_files/"):
     shutil.rmtree(dir_path + "HiCNN2_package/read_files/")
-if os.path.exists(dir + "HiCNN2_package/matrices/"):
+if os.path.exists(dir_path + "HiCNN2_package/matrices/"):
     shutil.rmtree(dir_path + "HiCNN2_package/matrices/")
 
 input_dir = sys.argv[1]
