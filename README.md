@@ -1,11 +1,15 @@
 # HIC_Imputation
 
-
 The HIC Imputation tool was developed by Florian Molnar, Kim Le and Octavia-Andreea Ciora for the De novo Endophenotyping project under the supervision of Olga Lazareva. This project was created as part of the Systems Biomedicine lecture at the Chair of Experimental Bioinformatics, TUM.
+
+This project is based on the following imputation methods:
+* Random Walk: Zhou, J., Ma, J., Chen, Y., Cheng, C., Bao, B., Peng, J., Sejnowski, T. J., Dixon, J. R., & Ecker, J. R. (2019). Robust single-cell Hi-C clustering by convolution- and random-walk–based imputation. Proceedings of the National Academy of Sciences, 116(28), 14011–14018. https://doi.org/10.1073/pnas.1901423116
+* HiCNN2: Liu, T., & Wang, Z. (2019). HiCNN2: Enhancing the Resolution of Hi-C Data Using an Ensemble of Convolutional Neural Networks. Genes, 10(11), 862. https://doi.org/10.3390/genes10110862
+* DeepHiC: Hong, H., Jiang, S., Li, H., Quan, C., Zhao, C., Li, R., Bo, X. (2019). DeepHiC: A Generative Adversarial Network for Enhancing Hi-C Data Resolution. https://doi.org/10.1101/718148
 
 ### Pipeline:
 
-HIC Imputation aims to identify and cluster the cell-types of Hi-C data based on the chromatin structure. It takes Hi-C contact matrices (Random Walk, DeepHiC) or read files (HiCNN2) as input. There are three methods available for performing the imputation from low to high resolution data. The user can choose between Random Walk, HiCNN2 and DeepHiC. The binarization is an optional data postprocessing step, where the user can choose between binarization, personalized binarization and selective personalized binarization. The imputed matrices are then used for a Principal Component Analysis (PCA), followed by k-means clustering using the first 20 (or all) principal components. The pipeline outputs a PCA plot, the k-means clustering, a k-means elbow plot and a PCA scree plot.
+HIC Imputation aims to identify cell-types and cluster of Hi-C data based on the chromatin structure of each sample. It takes Hi-C contact matrices (Random Walk, DeepHiC) or read files (HiCNN2) as input. There are three methods available for performing the imputation from low to high resolution data. The user can choose between Random Walk, HiCNN2 and DeepHiC. The binarization is an optional data postprocessing step, where the user can choose between binarization, personalized binarization and selective personalized binarization. The imputed matrices are then used for a Principal Component Analysis (PCA), followed by k-means clustering using the first 20 (or all) principal components. The pipeline outputs a PCA plot, the k-means clustering, a k-means elbow plot and a PCA scree plot.
 
 <img width="922" alt="Pipeline" src="https://user-images.githubusercontent.com/51077615/74770461-9b24ca00-528c-11ea-847e-1f0196db06d9.png">
 
@@ -13,16 +17,16 @@ HIC Imputation aims to identify and cluster the cell-types of Hi-C data based on
 
 HiC Imputation pipeline is written in python3. Following depenedcies are necessary for running the tool:
 
-Python 3.6
-pytorch 1.1.0
-torchvision 0.3.0
-numpy 1.16.4
-scipy 1.3.0
-pandas 0.24.2
-scikit-learn 0.21.2
-matplotlib 3.1.0
-tqdm 4.32.2
-visdom 0.1.8.8
+* Python 3.6
+* pytorch 1.1.0
+* torchvision 0.3.0
+* numpy 1.16.4
+* scipy 1.3.0
+* pandas 0.24.2
+* scikit-learn 0.21.2
+* matplotlib 3.1.0
+* tqdm 4.32.2
+* visdom 0.1.8.8
 
 ### Usage:
 
