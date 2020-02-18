@@ -18,8 +18,8 @@ pytorch >0.4.0
 ### Usage:
 
 ```
-$ python Pipeline.py -i <input_path> -o <output_path> -m (DeepHiC|HiCNN2|RW) -k <n_clusters> 
-[-t] [-p] [-c <chr_len>] [-b] [-q] [-pb] [-psb]
+$ python Pipeline.py -i <input_path> -o <output_path> -m <DeepHiC|HiCNN2|RW> -k <n_clusters> 
+[-t] [-p] [-c <chr_len>] [-b|-pb|-psb] [-q]
   ```
   
  
@@ -29,11 +29,11 @@ $ python Pipeline.py -i <input_path> -o <output_path> -m (DeepHiC|HiCNN2|RW) -k 
  -o       Path to the output directory
  -m       Requested imputation method (DeepHiC, HiCNN2 or RW)
  -k       Number of clusters for k-means
- -t       Uniform threshold value (default: 0.1)
- -p       Restart probability (default: 0.03)
+ -t       Uniform threshold value (only for RW, default: 0.1) 
+ -p       Restart probability (only for RW, default: 0.03)
  -c       Length of the chromosome (needed for HiCNN2)
  -b       Binarizes the data after imputation
- -q       Binarization quantile (default: 0.85)
  -pb      Applies personalized binarization to the data after imputation
  -psb     Applies personalized selective binarization to the data after imputation 
+ -q       Binarization quantile (only if -b is given, default: 0.85)
 ```
