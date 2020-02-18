@@ -1,36 +1,17 @@
 import subprocess
-import argparse as ap
-import os
-import shutil
 
-
-parser = ap.ArgumentParser()
-parser.add_argument('--input', '-i', required = True)
-parser.add_argument('--dataset', '-d', required = True)
-parser.add_argument('--sampling_rate', '-s', type = int, default=16)
-parser.add_argument('--output', '-o', required = True)
-parser.add_argument('--deephic' , required = True)
-args = parser.parse_args()
-
-input_folder = args.input
-dataset = args.dataset
-sampling_rate = args.sampling_rate
-output_folder = args.output
-deephic = args.deephic
+# can be changed
+dataset = 'GM12878'
+sampling_rate = 16
+dataset_name = dataset + "_" + str(sampling_rate)
+input_folder = '/nfs/proj/scHiC_imputation/contact_maps/'
+output_folder = '/nfs/home/students/ciora/HiCluster/DeepHiC/DeepHiC/data/output/' + dataset_name + '/'
+scripts_folder = '/nfs/home/students/ciora/HiCluster/DeepHiC/scripts/'
 
 # DON'T CHANGE
-dataset_name = dataset
-deephic_folder = deephic + '/DeepHiC'
-preparation_folder = deephic_folder + '/data/' + dataset_name + '/mat/'
-predict_folder = deephic_folder + '/data/' + dataset_name + '/predict/'
-scripts_folder = deephic + '/scripts/'
-
-if os.path.exists(deephic_folder + '/data/' + dataset_name):
-    try:
-        shutil.rmtree(deephic_folder + '/data/' + dataset_name)
-    except OSError as e:
-        print("Error: %s - %s." % (e.filename, e.strerror))
-os.makedirs(deephic_folder + '/data/' + dataset_name)
+deephic_folder = '/nfs/home/students/ciora/HiCluster/DeepHiC/DeepHiC'
+preparation_folder = '/nfs/home/students/ciora/HiCluster/DeepHiC/DeepHiC/data/' + dataset_name + '/mat/'
+predict_folder = '/nfs/home/students/ciora/HiCluster/DeepHiC/DeepHiC/data/' + dataset_name + '/predict/'
 
 
 print("Data preparation")

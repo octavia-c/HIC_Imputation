@@ -2,15 +2,9 @@ import os
 import scipy.sparse
 import numpy as np
 import matplotlib.pyplot as plt
-import argparse as ap
 
-parser = ap.ArgumentParser()
-parser.add_argument('--input', '-i', required = True)
-parser.add_argument('--output', '-o', required = True)
-args = parser.parse_args()
-
-input_folder = args.input
-output_folder = args.output
+input_folder = '/nfs/home/students/ciora/HiCluster/DeepHiC/DeepHiC/data/output/GM12878/'
+output_folder = '/nfs/home/students/ciora/HiCluster/DeepHiC/output/DeepHiC_50_binary_personalized_selected/'
 
 if not os.path.exists(output_folder):
     os.makedirs(output_folder)
@@ -54,7 +48,7 @@ def to_binary(output_folder, filename, matrix, nonzero_percentage):
     vector= 1 * (vector > q)
     vector = scipy.sparse.csr_matrix(vector)
     #print(vector)
-    #heatmap(output_folder + filename, tri[0:500, 0:500], 500)
+    heatmap(output_folder + filename, tri[0:500, 0:500], 500)
     return vector
 
 def to_binary_for_files_over_median(input_folder, output_folder, median_percentage):
