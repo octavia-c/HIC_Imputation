@@ -11,6 +11,10 @@ HIC Imputation uses Hi-C contact matrices as an input and performs imputation fr
 
 ### Dependencies:
 
+Python 3.6
+numpy >1.14
+pytorch >0.4.0
+
 ### Usage:
 
 ```
