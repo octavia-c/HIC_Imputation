@@ -60,7 +60,7 @@ def performPCA(matrix, rownames, output_dir, numClusters):
     ax = fig.add_subplot(1,1,1) 
     ax.set_xlabel('PC1 - {0}%'.format(per_var[0]), fontsize = 15)
     ax.set_ylabel('PC2 - {0}%'.format(per_var[1]), fontsize = 15)
-    ax.set_title('HiCNN2', fontsize = 20)
+    ax.set_title('', fontsize = 20)
 
     targets = set(rownames)
     cmap = get_cmap(len(rownames)+1)
@@ -77,7 +77,7 @@ def performPCA(matrix, rownames, output_dir, numClusters):
     ax.grid()
 
 
-    plt.savefig(output_dir + "/PCA_HiCNN2_updated.png")
+    plt.savefig(output_dir + "/PCA.png")
 
 
 
@@ -89,7 +89,7 @@ def make_screeplot(pca , output_dir):
     plt.ylabel('Percentage of Explained Variance')
     plt.xlabel('Principal Component')
     plt.title('Scree Plot')
-    plt.savefig(output_dir + "/Scree_plot_updated.png")
+    plt.savefig(output_dir + "/Scree_plot.png")
     plt.clf()
 
 
@@ -136,7 +136,7 @@ def perform_kmeans(pca_data, output_dir, numClusters, n_samples):
     plt.title("K-means on the first " + str(min(20, n_samples)) + " PCs")
 
     
-    plt.savefig(output_dir + "/PCA_HiCNN2_kmeans_2clusters.png")
+    plt.savefig(output_dir + "/kmeans.png")
     plt.clf()
 
 
