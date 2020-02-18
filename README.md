@@ -11,7 +11,9 @@ $ python Pipeline.py -i <input_path> -o <output_path>
   -m (DeepHiC|HiCNN2|RW) -k <n_clusters> [-c <chr_len>]
   [-b] [-pb] [-psb]
   
+ 
  Command  Description
+ ```bash
   -i       The path to the raw contact matrices (or to the read files for HiCNN2)
   -o       Path to the output directory
   -m       The requested imputation method (DeepHiC, HiCNN2 or RW)
@@ -20,3 +22,4 @@ $ python Pipeline.py -i <input_path> -o <output_path>
   -b       Binarizes the data after imputation
   -pb      Applies personalized binarization to the data after imputation
   -psb     Applies personalized selective binarization to the data after imputation 
+```
