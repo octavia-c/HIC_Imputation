@@ -5,8 +5,9 @@ The tool HIC Imputation was developed by Florian Molnar, Octavia-Andreea Ciora a
 
 HIC Imputation uses Hi-C contact matrices as an input and performs imputation from low to high resolution data. On the imputed matrices is a Principal Component Analysis (PCA) performed which is the basis for the k-means clustering. 
 
+### Dependencies:
 
-Usage:
+### Usage:
 
   $ python Pipeline.py -i <input_path> -o <output_path>
   -m (DeepHiC|HiCNN2|RW) -k <n_clusters> [-t] [-p] 
