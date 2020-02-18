@@ -12,8 +12,8 @@ $ python Pipeline.py -i <input_path> -o <output_path>
   [-b] [-pb] [-psb]
   
  
+ ``` 
  Command  Description
- ```bash
   -i       The path to the raw contact matrices (or to the read files for HiCNN2)
   -o       Path to the output directory
   -m       The requested imputation method (DeepHiC, HiCNN2 or RW)
