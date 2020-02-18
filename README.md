@@ -3,9 +3,9 @@
 The HIC Imputation tool was developed by Florian Molnar, Kim Le and Octavia-Andreea Ciora for the De novo Endophenotyping project under the supervision of Olga Lazareva. This project was created as part of the Systems Biomedicine lecture at the Chair of Experimental Bioinformatics, TUM.
 
 This project is based on the following imputation methods:
-* Random Walk: Zhou, J., Ma, J., Chen, Y., Cheng, C., Bao, B., Peng, J., Sejnowski, T. J., Dixon, J. R., & Ecker, J. R. (2019). Robust single-cell Hi-C clustering by convolution- and random-walk–based imputation. Proceedings of the National Academy of Sciences, 116(28), 14011–14018. https://doi.org/10.1073/pnas.1901423116
-* HiCNN2: Liu, T., & Wang, Z. (2019). HiCNN2: Enhancing the Resolution of Hi-C Data Using an Ensemble of Convolutional Neural Networks. Genes, 10(11), 862. https://doi.org/10.3390/genes10110862
-* DeepHiC: Hong, H., Jiang, S., Li, H., Quan, C., Zhao, C., Li, R., Bo, X. (2019). DeepHiC: A Generative Adversarial Network for Enhancing Hi-C Data Resolution. https://doi.org/10.1101/718148
+* **Random Walk:** Zhou, J., Ma, J., Chen, Y., Cheng, C., Bao, B., Peng, J., Sejnowski, T. J., Dixon, J. R., & Ecker, J. R. (2019). Robust single-cell Hi-C clustering by convolution- and random-walk–based imputation. Proceedings of the National Academy of Sciences, 116(28), 14011–14018. https://doi.org/10.1073/pnas.1901423116
+* **HiCNN2:** Liu, T., & Wang, Z. (2019). HiCNN2: Enhancing the Resolution of Hi-C Data Using an Ensemble of Convolutional Neural Networks. Genes, 10(11), 862. https://doi.org/10.3390/genes10110862
+* **DeepHiC:** Hong, H., Jiang, S., Li, H., Quan, C., Zhao, C., Li, R., Bo, X. (2019). DeepHiC: A Generative Adversarial Network for Enhancing Hi-C Data Resolution. https://doi.org/10.1101/718148
 
 ### Pipeline:
 
