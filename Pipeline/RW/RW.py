@@ -47,13 +47,13 @@ def heatmap(output,matrix,lim):
     plt.savefig(output+".png")
 
 
-def uniform_for_folder(threshold, folder,output,replace = False):
+def uniform_for_folder(threshold, folder,output):
     if not os.path.exists(output):
         os.makedirs(output)
     for file in os.listdir(folder):
         filename = os.fsdecode(file)
         if filename.endswith(".npz"):
-            if(not os.path.exists(output+filename) or replace):
+            if(not os.path.exists(output+filename)):
                 print(filename)
                 matrix = scipy.sparse.load_npz(folder+filename)
                 matrix = matrix.todense()
@@ -62,13 +62,13 @@ def uniform_for_folder(threshold, folder,output,replace = False):
                 matrix = scipy.sparse.csr_matrix(matrix)
                 scipy.sparse.save_npz(output+filename, matrix)
 
-def rw_for_folder(folder,output,replace = False, p):
+def rw_for_folder(folder,output, p):
     if not os.path.exists(output):
         os.makedirs(output)
     for file in os.listdir(folder):
         filename = os.fsdecode(file)
         if filename.endswith(".npz"):
-            if(not os.path.exists(output + filename) or replace):
+            if(not os.path.exists(output + filename)):
                 print(filename)
                 matrix = scipy.sparse.load_npz(folder+filename)
                 matrix = matrix.todense()
@@ -165,6 +165,6 @@ rw = output_folder
 binary = output_folder + "/binary/"
 
 uniform_for_folder(threshold, input_raw, uniform)
-rw_for_folder(uniform,rw, restart_prob)
+rw_for_folder(uniform, rw ,restart_prob)
 if(binarization):
     to_binary_for_folder(rw,binary, quantile)
