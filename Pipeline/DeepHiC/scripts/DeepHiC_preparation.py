@@ -11,9 +11,6 @@ args = parser.parse_args()
 input_folder = args.input
 output_folder = args.output
 
-#input_folder = '/nfs/proj/scHiC_imputation/contact_maps/'
-#output_folder = '/nfs/home/students/ciora/HiCluster/DeepHiC/DeepHiC/data/GM12878/mat/'
-
 print("Data preparation with parameters: " + input_folder + " and " + output_folder)
 
 if not os.path.exists(output_folder):
