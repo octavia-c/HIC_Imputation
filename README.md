@@ -9,13 +9,13 @@ This project is based on the following imputation methods:
 
 ### Pipeline:
 
-HIC Imputation aims to identify cell-types and cluster of Hi-C data based on the chromatin structure of each sample. It takes Hi-C contact matrices (Random Walk, DeepHiC) or read files (HiCNN2) as input. There are three methods available for performing the imputation from low to high resolution data. The user can choose between Random Walk, HiCNN2 and DeepHiC. The binarization is an optional data postprocessing step, where the user can choose between binarization, personalized binarization and selective personalized binarization. The imputed matrices are then used for a Principal Component Analysis (PCA), followed by k-means clustering using the first 20 (or all) principal components. The pipeline outputs a PCA plot, the k-means clustering, a k-means elbow plot and a PCA scree plot.
+HIC Imputation aims to identify cell-types and cluster of Hi-C data based on the chromatin structure of each sample. It takes Hi-C contact matrices (Random Walk, DeepHiC) or read files (HiCNN2) as input. There are three methods available for performing the imputation from low to high resolution data. The user can choose between Random Walk, HiCNN2 and DeepHiC. The binarization is an optional data postprocessing step, where the user can choose between binarization, personalized binarization and selective personalized binarization. The imputed matrices are then used for a Principal Component Analysis (PCA), followed by k-means clustering using the first 20 (or all) principal components. The pipeline outputs a PCA, a k-means, an elbow and a PCA scree plot, as well as the imputed matrices.
 
 <img width="922" alt="Pipeline" src="https://user-images.githubusercontent.com/51077615/74770461-9b24ca00-528c-11ea-847e-1f0196db06d9.png">
 
 ### Dependencies:
 
-HiC Imputation pipeline is written in python3. Following depenedcies are necessary for running the tool:
+HiC Imputation pipeline is written in python3. Following dependencies are necessary for running the tool:
 
 * Python 3.6
 * pytorch 1.1.0
@@ -37,18 +37,19 @@ $ python Pipeline.py -i <input_path> -o <output_path> -m <DeepHiC|HiCNN2|RW> -k 
   
  
  ``` 
- Command  Description
- -i       Path to the raw contact matrices (or to the read files for HiCNN2)
- -o       Path to the output directory
- -m       Requested imputation method (DeepHiC, HiCNN2 or RW)
- -k       Number of clusters for k-means
- -t       Uniform threshold value (only for RW, default: 0.1) 
- -p       Restart probability (only for RW, default: 0.03)
- -c       Length of the chromosome (needed for HiCNN2)
- -b       Binarizes the data after imputation
- -pb      Applies personalized binarization to the data after imputation
- -psb     Applies personalized selective binarization to the data after imputation 
- -q       Binarization quantile (only if -b is given, default: 0.85)
+ Mandatory Command  Description
+ -i                 Path to the input directory containing raw contact matrices (or to the read files for HiCNN2)
+ -o                 Path to the output directory
+ -m                 Requested imputation method (DeepHiC, HiCNN2 or RW)
+ -k                 Number of clusters for k-means
+ -c                 Length of the chromosome (only for HiCNN2)
+Optional Command    Description
+ -t                 Uniform threshold value (only for RW, default: 0.1) 
+ -p                 Restart probability (only for RW, default: 0.03)
+ -b                 Binarizes the data after imputation
+ -pb                Applies personalized binarization to the data after imputation
+ -psb               Applies personalized selective binarization to the data after imputation 
+ -q                 Binarization quantile (only if -b is given, default: 0.85)
 ```
 
 ### Input:
