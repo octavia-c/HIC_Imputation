@@ -46,7 +46,7 @@ def to_binary_for_folder(input_folder, output_folder, binary_cutoff):
             matrix = matrix.todense()
             vector = to_binary(output_folder, filename, matrix, binary_cutoff)
 
-            binary_path = os.path.join(output_folder, "binary_matrix_" + str(binary_cutoff))
+            binary_path = os.path.join(output_folder, "binary_matrix/")
             if not os.path.exists(binary_path):
                 os.makedirs(binary_path)
             scipy.sparse.save_npz(binary_path + "/" + sample + "_binary.npz", vector)

@@ -99,7 +99,7 @@ if(personalized_binarization):
 if (personalized_selective_binarization):
     print("------------------\nPersonalized Selective Binarization\n------------------\n")
     subprocess.call(["python", dir_path + "/binarization/Binarize_personalized_selected.py", "--input", imputation_output, "--output", binarization_output])
-    pca_input = binarization_output + "/binary_matrix_personalized/selected"
+    pca_input = binarization_output + "/binary_matrix_personalized_selected"
 os.chdir(dir_path)
 print("------------------\nPCA\n------------------\n")
 print("Creating big matrix for PCA")
