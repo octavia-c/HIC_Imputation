@@ -80,7 +80,7 @@ if(method == "RW"):
         except OSError as e:
             print("Error: %s - %s." % (e.filename, e.strerror))
     os.makedirs(uniform_output)
-    subprocess.call(["python", dir_path + "/RW/RW.py", "--input", input_folder, "--output", imputation_output, "--uniform", uniform_output, "-p", restart_probability, "-t", threshold])
+    subprocess.call(["python", dir_path + "/RW/RW.py", "--input", input_folder, "--output", imputation_output, "--uniform", uniform_output, "-p", str(restart_probability), "-t", str(threshold)])
 elif (method == "HiCNN2"):
     print("------------------\nHiCNN2\n------------------\n")
     subprocess.call(["python", dir_path + "/HiCNN2/HiCNN2.py", input_folder, str(chrLength)])
@@ -90,22 +90,22 @@ elif (method == "DeepHiC"):
         ["python", dir_path + "/DeepHiC/scripts/DeepHiC_RUN.py", "--input", input_folder, "--output", imputation_output, "--dataset", dataset, "--deephic", dir_path + "/DeepHiC"])
 if(binarization):
     print("------------------\nBinarization\n------------------\n")
-    subprocess.call(["python", dir_path + "/DeepHiC/scripts/Binarize.py", "--input", imputation_output, "--output", binarization_output, "-q", quantile])
+    subprocess.call(["python", dir_path + "/binarization/Binarize.py", "--input", imputation_output, "--output", binarization_output, "-q", str(quantile)])
     pca_input = binarization_output + "/binary_matrix/"
 if(personalized_binarization):
     print("------------------\nPersonalized Binarization\n------------------\n")
-    subprocess.call(["python", dir_path + "/DeepHiC/scripts/Binarize_personalized.py", "--input", imputation_output, "--output", binarization_output])
+    subprocess.call(["python", dir_path + "/binarization/Binarize_personalized.py", "--input", imputation_output, "--output", binarization_output])
     pca_input = binarization_output + "/binary_matrix_personalized/"
 if (personalized_selective_binarization):
     print("------------------\nPersonalized Selective Binarization\n------------------\n")
-    subprocess.call(["python", dir_path + "/DeepHiC/scripts/Binarize_personalized_selected.py", "--input", imputation_output, "--output", binarization_output])
+    subprocess.call(["python", dir_path + "/binarization/Binarize_personalized_selected.py", "--input", imputation_output, "--output", binarization_output])
     pca_input = binarization_output + "/binary_matrix_personalized/selected"
 os.chdir(dir_path)
 print("------------------\nPCA\n------------------\n")
 print("Creating big matrix for PCA")
 subprocess.call(["python", dir_path + "/PCA_matrix.py", "--input", pca_input, "--output", tmp_output])
 print("Perfoming PCA")
-subprocess.call(["python", dir_path + "/PCA_server.py", "--input", tmp_output, "--output", output_folder, "-k", k])
+subprocess.call(["python", dir_path + "/PCA_server.py", "--input", tmp_output, "--output", output_folder, "-k", str(k)])
 print("------------------\nPIPELINE DONE")
 print("Check results in " + output_folder + "\n------------------")
 
