@@ -38,7 +38,7 @@ $ python Pipeline.py -i <input_path> -o <output_path> -m <DeepHiC|HiCNN2|RW> -k 
  
  ``` 
  Mandatory Command  Description
- -i                 Path to the input directory containing raw contact matrices (or to the read files for HiCNN2)
+ -i                 Path to the input directory containing raw contact matrices (or read files for HiCNN2)
  -o                 Path to the output directory
  -m                 Requested imputation method (DeepHiC, HiCNN2 or RW)
  -k                 Number of clusters for k-means
