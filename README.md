@@ -50,3 +50,9 @@ $ python Pipeline.py -i <input_path> -o <output_path> -m <DeepHiC|HiCNN2|RW> -k 
  -psb     Applies personalized selective binarization to the data after imputation 
  -q       Binarization quantile (only if -b is given, default: 0.85)
 ```
+
+### Input:
+The pipeline takes Hi-C data as input. The files should be named according to the corresponding cell-type (e.g. typeA_1, typeA_2, typeB_1, typeB_2). The input format depends on the chosen method for the imputation step. If Random Walk or DeepHiC are used, the pipeline requires contact matrices as .npz sparse matrices. For HiCNN2, the Hi-C read files are needed.
+
+### Output:
+The output folder is defined by the user. The pipeline outputs a PCA plot, the k-means clustering plot, a k-means elbow plot and a PCA scree plot aiming to make the interpretation of results easier. The imputed matrices can be found in the pipeline folder under /tmp/imputation_output and /tmp/binarization_output (in case binarization is performed).
