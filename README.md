@@ -43,7 +43,7 @@ $ python Pipeline.py -i <input_path> -o <output_path> -m <DeepHiC|HiCNN2|RW> -k 
  -m                 Requested imputation method (DeepHiC, HiCNN2 or RW)
  -k                 Number of clusters for k-means
  -c                 Length of the chromosome (only for HiCNN2)
-Optional Command    Description
+Optional Command   Description
  -t                 Uniform threshold value (only for RW, default: 0.1) 
  -p                 Restart probability (only for RW, default: 0.03)
  -b                 Binarizes the data after imputation
